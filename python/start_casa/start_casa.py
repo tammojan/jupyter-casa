@@ -89,9 +89,11 @@ class CasapyKernel(IPythonKernel):
         # Display log messages
         if len(loglines) > 0:
             button_id = str(time.time()).replace('.', '_') # Make sure all IDs are unique
-            errorhappened = any(['Some arguments failed to verify' in logline
+            errorhappened = any(['failed to verify' in logline
                                    for logline in loglines]) or \
                             any(['Please check that the file ' in logline
+                                   for logline in loglines]) or \
+                            any(['An error occurred' in logline
                                    for logline in loglines])
             if errorhappened:
                 errorcolor = ' style="background-color:red"'
